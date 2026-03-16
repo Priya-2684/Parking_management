@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vehicle Number Validation Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .input { padding: 10px; font-size: 16px; width: 200px; }
+        .valid { border: 2px solid #28a745; }
+        .invalid { border: 2px solid #dc3545; }
+        .message { margin-top: 10px; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h2>🇮🇳 Indian Vehicle Number Validation</h2>
+    <p>Format: <strong>AB12CD3456</strong> (2 letters, 2 digits, 2 letters, 4 digits)</p>
+    
+    <input 
+        type="text" 
+        id="vehicleInput" 
+        class="input" 
+        placeholder="Enter vehicle number"
+        oninput="validateVehicle(this.value)"
+    >
+    
+    <div id="message"></div>
+
+    <h3>Examples:</h3>
+    <ul>
+        <li><strong>MH12AB1234</strong> ✅ Valid</li>
+        <li><strong>DL05CD5678</strong> ✅ Valid</li>
+        <li><strong>KA01EF9012</strong> ✅ Valid</li>
+        <li><strong>ABC123</strong> ❌ Invalid (too short)</li>
+        <li><strong>MH 12 AB 1234</strong> ❌ Invalid (spaces will be auto-removed)</li>
+    </ul>
+
+    <script>
+        function validateIndianVehicleNumber(vehicleNumber) {
+            const cleanNumber = vehicleNumber.replace(/\s/g, '').toUpperCase();
+            const pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
+            
+            if (!cleanNumber) {
+                return { isValid: false, message: "Vehicle number is required" };
+            }
+            
+            if (!pattern.test(cleanNumber)) {
+                return { 
+                    isValid: false, 
+                    message: "Invalid format. Use: AB12CD3456 (e.g., MH12AB1234)" 
+                };
+            }
+            
+            return { isValid: true, message: "Valid vehicle number!" };
+        }
+
+        function validateVehicle(value) {
+            const input = document.getElementById('vehicleInput');
+            const message = document.getElementById('message');
+            const validation = validateIndianVehicleNumber(value);
+            
+            input.value = value.replace(/\s/g, '').toUpperCase();
+            
+            if (validation.isValid) {
+                input.className = 'input valid';
+                message.className = 'message success';
+            } else {
+                input.className = 'input invalid';
+                message.className = 'message error';
+            }
+            
+            message.textContent = validation.message;
+        }
+    </script>
+</body>
+</html>

@@ -7,14 +7,32 @@ export const registerApi = async (data: {
   password: string;
   role: string;
 }) => {
-  const res = await axiosInstance.post("/auth/register", data);
-  return res.data;
+  console.log("Attempting registration to:", "/auth/register", "with data:", { 
+    username: data.username, 
+    email: data.email, 
+    role: data.role 
+  });
+  try {
+    const res = await axiosInstance.post("/auth/register", data);
+    console.log("Registration response:", res.data);
+    return res.data;
+  } catch (error: any) {
+    console.error("Registration API error:", error.response?.data || error.message);
+    throw error;
+  }
 };
 
 export const loginApi = async (data: {
   username: string;
   password: string;
 }): Promise<LoginResponse> => {
-  const res = await axiosInstance.post("/auth/login", data);
-  return res.data;
+  console.log("Attempting login to:", "/auth/login", "with data:", { username: data.username });
+  try {
+    const res = await axiosInstance.post("/auth/login", data);
+    console.log("Login response:", res.data);
+    return res.data;
+  } catch (error: any) {
+    console.error("Login API error:", error.response?.data || error.message);
+    throw error;
+  }
 };

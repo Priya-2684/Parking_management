@@ -15,18 +15,26 @@ def seed():
             role="admin"
         )
 
-    if not slot_repository.get_slot_by_number(db, "B1"):
-        slot_repository.create_slot(db, "B1", "Bike")
+    # Create Bike Slots (B1-B20)
+    for i in range(1, 21):
+        slot_number = f"B{i}"
+        if not slot_repository.get_slot_by_number(db, slot_number):
+            slot_repository.create_slot(db, slot_number, "Bike")
 
-    if not slot_repository.get_slot_by_number(db, "B2"):
-        slot_repository.create_slot(db, "B2", "Bike")
+    # Create Car Slots (C1-C15)
+    for i in range(1, 16):
+        slot_number = f"C{i}"
+        if not slot_repository.get_slot_by_number(db, slot_number):
+            slot_repository.create_slot(db, slot_number, "Car")
 
-    if not slot_repository.get_slot_by_number(db, "B3"):
-        slot_repository.create_slot(db, "B3", "Bike")
-
+    # Create pricing for both vehicle types
     bike_pricing = pricing_repository.get_pricing_by_vehicle_type(db, "Bike")
     if not bike_pricing:
         pricing_repository.create_pricing(db, "Bike", 10)
+
+    car_pricing = pricing_repository.get_pricing_by_vehicle_type(db, "Car")
+    if not car_pricing:
+        pricing_repository.create_pricing(db, "Car", 20)
 
     db.close()
 

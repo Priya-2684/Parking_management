@@ -1,15 +1,15 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import ProtectedRoute from "../components/common/ProtectedRoute";
-import PricingManagement from "../pages/admin/PricingManagement";
-import SlotManagement from "../pages/admin/SlotManagement";
-import Login from "../pages/auth/Login";
-import Register from "../pages/auth/Register";
-import Dashboard from "../pages/dashboard/Dashboard";
+import ProtectedRoute from "../components/ProtectedRoute";
+import PricingManagement from "../pages/PricingManagement";
+import SlotManagement from "../pages/SlotManagement";
+import Login from "../pages/Login";
+import Dashboard from "../pages/Dashboard";
 import NotFound from "../pages/NotFound";
-import ActiveParking from "../pages/parking/ActiveParking";
-import ParkingHistory from "../pages/parking/ParkingHistory";
-import VehicleEntry from "../pages/parking/VehicleEntry";
-import VehicleExit from "../pages/parking/VehicleExit";
+import ActiveParking from "../pages/ActiveParking";
+import ParkingHistory from "../pages/ParkingHistory";
+import VehicleEntry from "../pages/VehicleEntry";
+import VehicleExit from "../pages/VehicleExit";
+import Register from "../pages/auth/Register";
 
 export default function AppRoutes() {
   return (
@@ -17,15 +17,6 @@ export default function AppRoutes() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<Login />} />
-
-        <Route
-          path="/register"
-          element={
-            <ProtectedRoute>
-              <Register />
-            </ProtectedRoute>
-          }
-        />
 
         <Route
           path="/dashboard"
@@ -89,6 +80,14 @@ export default function AppRoutes() {
             </ProtectedRoute>
           }
         />
+        <Route
+        path="/register"
+      element={
+      <ProtectedRoute>
+        <Register />
+      </ProtectedRoute>
+  }
+/>
 
         <Route path="*" element={<NotFound />} />
       </Routes>

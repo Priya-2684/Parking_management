@@ -18,7 +18,7 @@ from app.routes.parking_routes import router as parking_router
 from app.routes.dashboard_route import router as dashboard_router
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="Parking Lot Management System")
+app = FastAPI(title="INDIUM Parking Management System")
 
 app.add_middleware(
     CORSMiddleware,
@@ -38,4 +38,4 @@ app.include_router(dashboard_router)
 
 @app.get("/")
 def home():
-    return {"message": "Parking Lot Management Backend Running"}
+    return {"message": "INDIUM Parking Management Backend Running"}

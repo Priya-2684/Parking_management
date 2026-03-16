@@ -4,7 +4,13 @@ import type { ParkingRecord } from "../types/parking";
 export const vehicleEntryApi = async (data: {
   vehicle_number: string;
   vehicle_type: string;
-}): Promise<ParkingRecord> => {
+}): Promise<{
+  message: string;
+  vehicle_number: string;
+  vehicle_type: string;
+  slot_number: string;
+  entry_time: string;
+}> => {
   const res = await axiosInstance.post("/parking/entry", data);
   return res.data;
 };
@@ -17,6 +23,8 @@ export const vehicleExitApi = async (data: {
   slot_number: string;
   duration_hours: number;
   charge: number;
+  entry_time: string;
+  exit_time: string;
 }> => {
   const res = await axiosInstance.post("/parking/exit", data);
   return res.data;

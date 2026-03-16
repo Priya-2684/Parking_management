@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { loginApi } from "../../api/authApi";
 import { useAuth } from "../../hooks/useAuth";
 
@@ -16,15 +16,16 @@ export default function Login() {
       const res = await loginApi({ username, password });
       await login(res.access_token);
       navigate("/dashboard");
-    } catch {
-      alert("Invalid username or password");
+    } catch (error: any) {
+      console.error("Login error:", error);
+      alert(`Login failed: ${error.response?.data?.detail || error.message || "Unknown error"}`);
     }
   };
 
   return (
     <div className="auth-container">
       <form className="card auth-card" onSubmit={handleSubmit}>
-        <h2>Login</h2>
+        <h2>INDIUM Parking Management System</h2>
 
         <input
           type="text"
@@ -45,8 +46,6 @@ export default function Login() {
         <button className="btn" type="submit">
           Login
         </button>
-
-        
       </form>
     </div>
   );

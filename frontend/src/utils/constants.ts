@@ -1,4 +1,4 @@
-export const APP_NAME = "Parking Lot Management System";
+export const APP_NAME = "INDIUM Parking Management System";
 
 export const ROLES = {
   ADMIN: "admin",

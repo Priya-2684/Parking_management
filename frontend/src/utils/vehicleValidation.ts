@@ -2,17 +2,17 @@
 // Pattern: AB12CD3456 (2 letters, 2 digits, 2 letters, 4 digits)
 
 export const validateIndianVehicleNumber = (vehicleNumber: string): { isValid: boolean; message: string } => {
-  // Remove spaces and convert to uppercase
+  
   const cleanNumber = vehicleNumber.replace(/\s/g, '').toUpperCase();
   
-  // Regex pattern for Indian vehicle number: AB12CD3456
+  
   const pattern = /^[A-Z]{2}\d{2}[A-Z]{2}\d{4}$/;
   
   if (!cleanNumber) {
     return { isValid: false, message: "Vehicle number is required" };
   }
   
-  if (!pattern.test(cleanNumber)) {
+  if (!pattern.test(cleanNumber)) { // test -> clean number matches the regex
     return { 
       isValid: false, 
       message: "Invalid format. Use format: AB12CD3456 (e.g., MH12AB1234)" 

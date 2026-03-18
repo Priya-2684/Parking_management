@@ -76,4 +76,5 @@ class ExitResponse(BaseModel):
     exit_time: datetime
 
     class Config:
-        from_attributes = True
+        from_attributes = True  # Your backend returns database objects, not dictionaries.
+                                #This line allows FastAPI to convert those objects into API response JSON.

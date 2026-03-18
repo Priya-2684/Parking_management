@@ -2,7 +2,7 @@ import { useAuth } from "../hooks/useAuth";
 import { APP_NAME } from "../utils/constants";
 
 export default function Navbar() {
-  const { user, logout } = useAuth();
+  const { user, logout } = useAuth(); // extracting the user and logout fn
 
   return (
     <div className="navbar">

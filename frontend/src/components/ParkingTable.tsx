@@ -1,7 +1,7 @@
 import type { ParkingRecord } from "../types/parking";
 import { formatTime } from "../utils/formatTime";
 
-export default function ParkingTable({ 
+export default function ParkingTable({ //props 
   data, 
   onQuickExit 
 }: { 
@@ -20,7 +20,7 @@ export default function ParkingTable({
           <th>Duration</th>
           <th>Charge</th>
           <th>Status</th>
-          {onQuickExit && <th>Action</th>}
+          {onQuickExit && <th>Action</th>} 
         </tr>
       </thead>
       <tbody>

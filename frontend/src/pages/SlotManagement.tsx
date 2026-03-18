@@ -47,9 +47,9 @@ export default function SlotManagement() {
       // Find the next available slot number
       const existingSlots = slots.filter(s => s.slot_type === slotType);
       const existingNumbers = existingSlots
-        .map(s => parseInt(s.slot_number.slice(1)))
-        .filter(n => !isNaN(n))
-        .sort((a, b) => b - a);
+        .map(s => parseInt(s.slot_number.slice(1))) //removes the prefix letter [1,2,3]
+        .filter(n => !isNaN(n)) //removes nan
+        .sort((a, b) => b - a); //sort des 
       
       const startNumber = existingNumbers.length > 0 ? existingNumbers[0] + 1 : 1;
       const createdSlots = [];

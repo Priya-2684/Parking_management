@@ -12,14 +12,12 @@ export default function EntryForm() {
     const formatted = formatVehicleNumber(e.target.value);
     setVehicleNumber(formatted);
     
-    // Clear error when user starts typing
     if (error) setError("");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate vehicle number
     const validation = validateIndianVehicleNumber(vehicleNumber);
     if (!validation.isValid) {
       setError(validation.message);

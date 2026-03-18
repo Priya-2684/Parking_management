@@ -5,7 +5,7 @@ import { validateIndianVehicleNumber, formatVehicleNumber } from "../utils/vehic
 export default function ExitForm() {
   const [vehicleNumber, setVehicleNumber] = useState("");
   const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(""); 
   const [activeVehicles, setActiveVehicles] = useState<any[]>([]);
   const [useDropdown, setUseDropdown] = useState(false);
 
@@ -26,7 +26,6 @@ export default function ExitForm() {
     const formatted = formatVehicleNumber(e.target.value);
     setVehicleNumber(formatted);
     
-    // Clear error when user starts typing
     if (error) setError("");
   };
 
@@ -39,7 +38,6 @@ export default function ExitForm() {
   const handleExit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Validate vehicle number
     const validation = validateIndianVehicleNumber(vehicleNumber);
     if (!validation.isValid) {
       setError(validation.message);

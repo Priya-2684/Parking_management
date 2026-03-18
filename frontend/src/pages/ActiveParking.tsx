@@ -18,10 +18,6 @@ export default function ActiveParking() {
   }, []);
 
   const handleQuickExit = async (vehicleNumber: string, slotNumber: string) => {
-    if (!confirm(`Exit vehicle ${vehicleNumber} from slot ${slotNumber}?`)) {
-      return;
-    }
-
     try {
       const res = await vehicleExitApi({
         vehicle_number: vehicleNumber,
